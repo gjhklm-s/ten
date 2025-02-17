@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enhanced Greeting Page</title>
+    <style>
+      /* Smooth gradient background animation */
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(120deg, #ff7e5f, #feb47b, #86a8e7, #7f7fd5);
+        background-size: 300% 300%;
+        animation: gradientBG 10s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Typewriter effect for the heading */
+      h1 {
+        font-size: 6rem;
+        color: #ffffff;
+        overflow: hidden;
+        border-right: 0.2em solid #ffffff;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.2em;
+        animation: typing 3s steps(30, end),
+          blink 0.5s step-end infinite alternate;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        from {
+          border-color: transparent;
+        }
+        to {
+          border-color: white;
+        }
+      }
+
+      /* Styling input and button */
+      input {
+        padding: 30px;
+        font-size: 2.5rem;
+        margin-top: 30px;
+        border: 4px solid #fff;
+        border-radius: 10px;
+        width: 600px;
+      }
+
+      button {
+        margin-top: 30px;
+        padding: 30px 50px;
+        font-size: 2.5rem;
+        background-color: #ffffff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        color: #4caf50;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #4caf50;
+        color: #ffffff;
+        transform: scale(1.2);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 2.5rem;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      /* Greeting message styling */
+      #greetingMessage {
+        margin-top: 30px;
+        font-size: 3rem;
+        color: #ffffff;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 5rem;
+        }
+
+        input {
+          width: 95%;
+          font-size: 3rem;
+          padding: 40px;
+        }
+
+        button {
+          width: 95%;
+          font-size: 3rem;
+          padding: 40px;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        nav a {
+          font-size: 3rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        h1 {
+          font-size: 3.5rem;
+        }
+
+        input {
+          width: 300px;
+          font-size: 1.2rem;
+        }
+
+        button {
+          font-size: 1.2rem;
+          padding: 15px 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="https://www.instagram.com/su.jin7301/?next=%2F" target="_blank"
+        >Home Insta</a
+      >
+      <a>Contact: 9600714070</a>
+    </nav>
+
+    <div>
+      <h1>Welcome!</h1>
+      <p style="color: #fff; font-size: 3rem">Enter your name below:</p>
+      <input type="text" id="userName" placeholder="Your name" />
+      <br />
+      <button onclick="greetUser()">Submit</button>
+      <p id="greetingMessage"></p>
+      <button onclick="goToNextPage()">Go to Next Page</button>
+    </div>
+
+    <script>
+      let isSubmitted = false; // Track if the submit button has been clicked
+
+      function greetUser() {
+        const name = document.getElementById("userName").value;
+        if (name) {
+          document.getElementById(
+            "greetingMessage"
+          ).innerText = `Hello, ${name}! Welcome to the webpage.`;
+          isSubmitted = true; // Mark as submitted
+        } else {
+          alert("Please enter your name.");
+          isSubmitted = false;
+        }
+      }
+
+      function goToNextPage() {
+        const name = document.getElementById("userName").value;
+        if (!name) {
+          alert("Please enter your name before proceeding to the next page.");
+        } else if (!isSubmitted) {
+          alert("Please click the Submit button before proceeding.");
+        } else {
+          window.location.href = "new 3.html";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction System</title>
+    <style>
+       body {
+	        width: 100%;
+    padding: 0rem;
+    background: rgb(208, 232, 180);
+    margin: 0rem auto;
+    max-width: 10000px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+text-align: center;
+    
+	  
+           
+        }
+		#hello {
+    background-color: #D3D3D3;
+    color: #2F4F4F;
+    padding: 2rem;
+    border-radius: 10px;
+    display: block;
+    width: 80%; /* Keep it within the main section */
+    margin: 1rem auto; /* Centers the section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: 3px solid #000; /* Adds a solid black border */
+}
+
+
+
+
+		header {
+	         background-image: url('h.png');
+		
+             background-color: #FF8C00;
+            color:#2F4F4F;
+            padding: 4rem;
+            text-align: center;
+        }
+        footer {
+    background-image: url('he.png'); /* Change 'footer.png' to your image */
+    
+    background-position: center;
+    background-color: #FF8C00;
+    color: #2F4F4F;
+    padding: 4rem;
+    text-align: center;
+}
+       
+        table {
+            width: 100%;
+            
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+			border-color:#1E90FF ;
+            padding: 10px;
+            text-align: center;
+		justify-content: center;
+			background-color:#F0FFF0;
+			color:black;
+        }
+        th {
+            background-color: green;
+            color:white ;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            
+			
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+            
+		 h1 {
+            font-size: 2rem;
+            color:#B22222;
+            overflow: hidden;
+            border-right: .2em solid #ffffff;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .2em;
+            animation: typing 3s steps(30, end), blink .5s step-end infinite alternate;
+        }
+		@keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            from { border-color: transparent }
+            to { border-color: white; }
+        }
+        /* Ensure main is centered */
+
+
+/* Styling for auction box */
+.auction-box {
+    		
+    background-color: #D3D3D3;
+    color: #2F4F4F;
+    padding: 2rem;
+    border-radius: 10px;
+    display: yellow;
+    width: 80%; /* Keep it within the main section */
+    margin: 1rem auto; /* Centers the section */
+    box-shadow: 0 0 10px rgba(216, 216, 6, 0.2);
+    text-align: center;
+    border: 3px solid #f0860d; /* Adds a solid black border */
+}
+
+
+/* Auction Title */
+.auction-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000080;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+		
+		
+		h2{
+		color:#8B0000;
+        white-space: nowrap;
+		}
+		h3{
+		color:#FF00FF;
+		}
+    </style>
+</head>
+<body>
+ 
+    <header>
+
+    </header>
+    <main>
+         <div class="auction-box">
+        <h1 class="auction-title">Auction 2.0</h1>
+       <a href="https://www.instagram.com/su.jin7301/?next=%2F" target="_blank">
+    <button class="auction-button"onmouseover="this.style.background='#800080';" 
+        onmouseout="this.style.background='#FF4500';"
+        style="
+            background:#FF4500; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Click me</button>
+</a>
+
+       </div>
+	<h2>Players List</h2>
+        <button onclick="showPlayers('Wicketkeepers')" onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Wicketkeepers</button>
+        <button onclick="showPlayers('Openers')"onclick="removePlayer('${team}', ${index})" 
+        onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Openers</button>
+        <button onclick="showPlayers('MiddleOrder')" onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Middle Order</button>
+        <button onclick="showPlayers('AllRounders')" onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">All-Rounders</button>
+        <button onclick="showPlayers('Spinners')" onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Spinners</button>
+        <button onclick="showPlayers('FastBowlers')" onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Fast Bowlers</button>
+        <button onclick="showPlayers('ForeignPlayers')" onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Foreign Players</button>
+        <button onclick="showPlayers('IndianPlayers')"onmouseover="this.style.background='#6B8E23';" 
+        onmouseout="this.style.background='blue';"
+        style="
+            background:blue; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;"
+    >Indian Players</button>
+		
+
+        <div id="playersList"></div>
+		
+		<a id="hello">
+        <h2>Enter Auction Details</h2>
+		<label for="teamName">Select Team:</label>
+        <select id="teamName"style="font-size: 18px; padding: 5px; width: 200px;">
+            <option value="">Select User</option>
+            <option value="Sujin">Sujin</option>
+            <option value="Ajin">Ajin</option>
+            <option value="Abi">Abi</option>
+            <option value="Asoke">Asoke</option>
+            <option value="Kamal">Kamal</option>
+            <option value="Anish">Anish</option>
+            <option value="DD">DD</option>
+            <option value="Raja">Raja</option>
+            <option value="Aswath">Aswath</option>
+            <option value="Varshan">Varshan</option>
+        </select>
+		
+        <button onclick="setTeam()"onmouseover="this.style.background='#663399';" 
+        onmouseout="this.style.background='#008000';"
+        style="
+            background:#008000; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;"">Select User</button>
+		
+        <h3 id="selectedTeam"></h3>
+        <input type="text" id="playerName" placeholder="Enter Player Name"style="font-size: 18px; padding: 5px; width: 200px;"><br><br>
+        <input type="number" id="price" placeholder="Enter Price in Cr"style="font-size: 18px; padding: 5px; width: 200px;"><br>
+        <button onclick="addToAuction()"onmouseover="this.style.background='#663399';" 
+        onmouseout="this.style.background='#008000';"
+        style="
+            background:#008000; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer;">Add to Auction</button>
+		</a>
+        <h2>Users</h2>
+        <div id="teamsContainer"></div>
+		 <h2>About This Game</h2>
+		<dl>
+		<li>Total <b>Budget</b> in auction: 150cr.</li>
+		<li>Total number of <b>RTM</b>: 2.</li>
+		<li><b>Maximum</b> number of players for a team: 20.</li>
+		<li><b>Minimum</b> number of players for a team: 15.</li>
+		<li>Maximum number of <b>foreign</b> player: 8.</li>
+		<li>Totally <b>12 players</b> in the paying11 (which can include <b>5 foreign</b> players).</li>
+    </main>
+    <footer></footer>
+    <script>
+	const playerPoints = {
+       "Jos Buttler": 10, "Quinton De Kock": 9, "Nicholas Pooran": 8,
+        "Rishab Pant": 9, "Phil Salt": 7, "Ishan Kishan": 8,
+        "David Warner": 9, "Shubman Gill": 10, "Faf du Plessis": 9,
+        "Hardik Pandya": 10, "Ben Stokes": 9, "Ravindra Jadeja": 9,
+        "Jasprit Bumrah": 10, "Mitchell Starc": 9, "Rashid Khan": 10,
+        // Add more players with points
+    };
+	const players = {
+            Wicketkeepers: ["Jos Buttler", "Quinton De Kock", "Nicholas Pooran", "Rishab Pant", "Phil Salt", "Ishan Kishan", "Jonny Bairstow", "Rahmanullah Gurbaz", "KL Rahul", "Jitesh Sharma", "Anuj Rawat", "Devon Conway", "Sanju Samson", "KS Bharat", "Shai Hope"],
+            Openers: ["Ruturaj Gaikwad", "Shubman Gill", "Abhishek Sharma", "Yashasvi Jaiswal", "Sai Sudharsan", "Faf du Plessis", "David Warner", "Kane Williamson", "Daryl Mitchell"],
+            MiddleOrder: ["David Miller", "Suryakumar Yadav", "Will Jacks", "Jake Fraser-McGurk", "Travis Head", "Shimron Hetmyer", "Tim David", "Heinrich Klaasen", "Tristan Stubbs", "Rovman Powell", "Rahul Tripathi", "Shivam Dube", "Deepak Hooda", "Shahrukh Khan", "Rinku Singh", "Manish Pandey", "Ajinkya Rahane", "Ayush Badoni", "Abdul Samad", "Tilak Verma", "Dhruv Jurel", "Riyan Parag", "Nitish Rana", "Rajat Patidar", "Abhinav Manohar", "Sameer Rizvi", "Shreyas Iyer", "Sarfaraz Khan", "Narayan Jagadeesan", "Prabhsimran Singh", "Shahbaz Ahmed", "Steve Smith", "Harry Brook", "Rilee Rossouw"],
+            AllRounders: ["Ben Stokes", "Sunil Narine", "Andre Russell", "Hardik Pandya", "Glenn Maxwell", "Marcus Stoinis", "Romario Shepherd", "Liam Livingstone", "Mitchell Marsh", "Cameron Green", "Ravindra Jadeja", "Rachin Ravindra", "Sam Curran", "Axar Patel", "Rahul Tewatia", "Washington Sundar", "Venkatesh Iyer", "Moeen Ali", "Mitchell Santner", "Krunal Pandya", "Nitish Reddy", "Jason Holder", "Mohammad Nabi", "Aiden Markram", "Glenn Phillips", "Vijay Shankar", "Shakib Al Hasan", "Kyle Mayers"],
+            Spinners: ["Rashid Khan", "Ravichandran Ashwin", "Noor Ahmad", "Kuldeep Yadav", "Varun Chakravarthy", "Ravi Bishnoi", "Yuzvendra Chahal", "Rahul Chahar", "R. Sai Kishore", "Mayank Markande", "Maheesh Theekshana", "Wanindu Hasaranga", "Adam Zampa", "Shreyas Gopal", "Karn Sharma", "Krishnappa Gowtham", "Adil Rashid"],
+            FastBowlers: ["Matheesha Pathirana", "Mitchell Starc", "Kagiso Rabada", "Anrich Nortje", "Trent Boult", "Jasprit Bumrah", "Arshdeep Singh", "Jofra Archer", "Bhuvneshwar Kumar", "Josh Hazlewood", "Mohammad Shami", "Mohammad Siraj", "T. Natarajan", "Naveen-ul-Haq", "Pat Cummins", "Marco Jansen", "Mohit Sharma", "Shardul Thakur", "Ishant Sharma", "Prasidh Krishna", "Umesh Yadav", "Umran Malik", "Avesh Khan", "Deepak Chahar", "Nathan Ellis", "Lockie Ferguson", "Sandeep Sharma", "Tushar Deshpande", "Nuwan Thushara", "Harshal Patel", "Khaleel Ahmed", "Alzarri Joseph", "Tim Southee", "Chris Jordan", "Gerald Coetzee", "Spencer Johnson"],
+        ForeignPlayers:["asdfghj"]
+		};
+		function showPlayers(category) {
+            document.getElementById("playersList").innerHTML = `<h2>${category.replace(/([A-Z])/g, ' $1')}</h2><ol>` + players[category].map(player => `<li>${player}</li>`).join('') + `</ol>`;
+        }
+        
+        let teams = JSON.parse(localStorage.getItem("teams")) || {
+            "Sujin": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Ajin": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Abi": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Asoke": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Kamal": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Anish": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "DD": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Raja": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Aswath": { players: [], totalSpent: 0, remainingBudget: 150 },
+            "Varshan": { players: [], totalSpent: 0, remainingBudget: 150 }
+        };
+        let currentCategory = "";
+    let currentIndex = 0;
+
+    function showPlayers(category) {
+        currentCategory = category;
+        currentIndex = 0;
+        displayPlayer();
+    }
+
+    function displayPlayer() {
+        const playerList = players[currentCategory];
+
+        if (!playerList || playerList.length === 0) {
+            document.getElementById("playersList").innerHTML = "<h2>No players available</h2>";
+            return;
+        }
+
+        const player = playerList[currentIndex];
+
+        document.getElementById("playersList").innerHTML = `
+            <h2>${currentCategory.replace(/([A-Z])/g, ' $1')}</h2>
+            <p><strong>Player ${currentIndex + 1}:</strong> ${player}</p>
+			<button onclick="prevPlayer()"onmouseover="this.style.background='grey';"onmouseout="this.style.background='red';"style="
+    background: red; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    
+    ">Previous Player</button>
+            <button onclick="nextPlayer()"onmouseover="this.style.background='grey';"onmouseout="this.style.background='red';"style="
+    background: red; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    
+    ">Next Player</button>
+        `;
+    }
+
+    function nextPlayer() {
+        const playerList = players[currentCategory];
+
+        if (!playerList || playerList.length === 0) return;
+
+        currentIndex = (currentIndex + 1) % playerList.length; // Loops back to the first player after the last
+        displayPlayer();
+    }
+	function prevPlayer() {
+        const playerList = players[currentCategory];
+
+        if (!playerList || playerList.length === 0) return;
+
+        currentIndex = (currentIndex - 1 + playerList.length) % playerList.length; // Loops backward
+        displayPlayer();
+    }
+        let totalBudget = 150;
+        let playerLimit = 5;
+        
+        function setTeam() {
+            const selectedTeam = document.getElementById("teamName").value;
+            if (!selectedTeam) {
+                alert("Please select a user!");
+                return;
+            }
+            document.getElementById("selectedTeam").textContent = "Selected User: " + selectedTeam;
+        }
+        
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                let speech = new SpeechSynthesisUtterance(text);
+                speech.lang = 'en-US';
+                speech.volume = 1;
+                speech.rate = 1;
+                speech.pitch = 1;
+                window.speechSynthesis.speak(speech);
+            }
+        }
+        
+        function addToAuction() {
+            const selectedTeam = document.getElementById("teamName").value;
+            const player = document.getElementById("playerName").value;
+            let price = parseFloat(document.getElementById("price").value);
+            if (!selectedTeam || !player || isNaN(price) || price <= 0) {
+                alert("Please enter valid details!");
+                speakText("Please enter valid details!");
+                return;
+            }
+			for (let team in teams) {
+        if (teams[team].players.some(p => p.player === player)) {
+            alert(`Player "${player}" is already sold!`);
+            speakText(`Player ${player} is already sold!`);
+            return;
+        }
+    }
+            if (teams[selectedTeam].players.length >= playerLimit) {
+                alert("Player limit reached for this user!");
+                speakText("Player limit reached for " + selectedTeam);
+                return;
+            }
+            if (teams[selectedTeam].totalSpent + price > totalBudget) {
+                alert("Budget Exceeded! You cannot spend more than ₹150 Cr.");
+                speakText("Budget Exceeded! You cannot spend more than 150 crore rupees.");
+                return;
+            }
+             let points = playerPoints[player] || 5;
+			 
+            
+            teams[selectedTeam].players.push({ player, price, points });
+            teams[selectedTeam].totalSpent += price;
+            teams[selectedTeam].remainingBudget = totalBudget - teams[selectedTeam].totalSpent;
+            localStorage.setItem("teams", JSON.stringify(teams));
+            updateTeamTables();
+            let totalPoints = teams[selectedTeam].players.reduce((sum, p) => sum + (p.points || 0), 0);
+
+        // ✅ Construct message
+        let message = `${selectedTeam} bought ${player} in the team for ${price} crores.`;
+        if (price >= 0.5 && price <= 5) message += "\nIt's a steal buy!";
+        else if (price > 5 && price <= 10) message += "\nIt's an excellent buy!";
+        else if (price > 10 && price <= 15) message += "\nIt's a great buy!";
+        else if (price > 15 && price <= 20) message += "\nIt's a good buy!";
+        else if (price > 21) message += "\nWasting amount!";
+        message += `\nTotal Points: ${totalPoints}.`;
+
+        // ✅ Alert and Speak
+        alert(message);
+        speakText(message);
+        }
+        
+        function removePlayer(team, index) {
+            teams[team].totalSpent -= teams[team].players[index].price;
+            teams[team].remainingBudget = totalBudget - teams[team].totalSpent;
+            teams[team].players.splice(index, 1);
+            localStorage.setItem("teams", JSON.stringify(teams));
+            updateTeamTables();
+        }
+        
+        function updateTeamTables() {
+            const teamsContainer = document.getElementById("teamsContainer");
+            teamsContainer.innerHTML = "";
+            
+            for (let team in teams) {
+                const teamDiv = document.createElement("div");
+				 let totalPoints = teams[team].players.reduce((sum, player) => sum + (player.points || 0), 0);
+
+                teamDiv.innerHTML = `
+                    <h3>${team} (Players: ${teams[team].players.length}/${playerLimit})</h3>
+                    <p><strong>Total Spent: ₹${teams[team].totalSpent.toFixed(2)} Cr</strong></p>
+                    <p><strong>Remaining Budget: ₹${teams[team].remainingBudget.toFixed(2)} Cr</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Price (Cr)</th>
+								<th>Points</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${teams[team].players.map((player, index) => `
+                                <tr>
+                                    <td>${player.player}</td>
+                                    <td>₹${player.price.toFixed(2)} Cr</td>
+									<td>${player.points}</td>
+                                    <td><button onclick="removePlayer('${team}', ${index})" onmouseover="this.style.background='grey';"onmouseout="this.style.background='red';"style="
+    background: red; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    
+    "
+    >Remove</button></td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+						 <tr>
+                                <td colspan="2"><strong>Total Players: ${teams[team].players.length}</strong></td>
+                        <td colspan="2"><strong>Total Points: ${totalPoints}</strong></td>
+                            </tr>
+                    </table>
+                `;
+                teamsContainer.appendChild(teamDiv);
+            }
+        }
+        
+        updateTeamTables();
+    </script>
+</body>
+</html>
